@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: flask-sqs-app
+  labels:
+    app: flask-sqs-app
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: flask-sqs-app
+  template:
+    metadata:
+      labels:
+        app: flask-sqs-app
+    spec:
+      containers:
+      - name: flask-sqs-app
+        image: your-dockerhub-username/flask-sqs-app:latest
+        ports:
+        - containerPort: 5000
+        env:
+        - name: AWS_ACCESS_KEY_ID
+          valueFrom:
+            secretKeyRef:
+              name: aws-credentials
+              key: access_key_id
+        - name: AWS_SECRET_ACCESS_KEY
+          valueFrom:
+            secretKeyRef:
+              name: aws-credentials
+              key: secret_access_key
+        - name: AWS_REGION
+          value: "your-region"
+        - name: SQS_QUEUE_URL
+          value: "your-queue-url"
