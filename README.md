@@ -17,9 +17,6 @@ This project is a Flask application that integrates with AWS SQS (Simple Queue S
 2. [Installation](#installation)
 3. [Usage](#usage)
 4. [Testing](#testing)
-5. [Deployment](#deployment)
-6. [Contributing](#contributing)
-7. [License](#license)
 
 ## Prerequisites
 
